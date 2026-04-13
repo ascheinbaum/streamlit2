@@ -75,28 +75,28 @@ with tab1:
         tabla_sexo = dff.groupby("Sex")["Survived"].agg(["sum", "count"])
         tabla_sexo.columns = ["Sobrevivieron", "Total"]
         tabla_sexo["Tasa (%)"] = (tabla_sexo["Sobrevivieron"] / tabla_sexo["Total"] * 100).round(1)
-        st.dataframe(tabla_sexo, use_container_width=True)
+        st.dataframe(tabla_sexo, width="stretch")
 
     with col_b:
         st.markdown("**Supervivencia por clase**")
         tabla_clase = dff.groupby("Pclass")["Survived"].agg(["sum", "count"])
         tabla_clase.columns = ["Sobrevivieron", "Total"]
         tabla_clase["Tasa (%)"] = (tabla_clase["Sobrevivieron"] / tabla_clase["Total"] * 100).round(1)
-        st.dataframe(tabla_clase, use_container_width=True)
+        st.dataframe(tabla_clase, width="stretch")
 
     with col_c:
         st.markdown("**Supervivencia por rango etario**")
         tabla_age = dff.groupby("age_class", observed=True)["Survived"].agg(["sum", "count"])
         tabla_age.columns = ["Sobrevivieron", "Total"]
         tabla_age["Tasa (%)"] = (tabla_age["Sobrevivieron"] / tabla_age["Total"] * 100).round(1)
-        st.dataframe(tabla_age, use_container_width=True)
+        st.dataframe(tabla_age, width="stretch")
 
     st.divider()
     st.subheader("Estadísticas descriptivas por supervivencia")
     vars_num = ["Age", "Fare", "SibSp", "Parch"]
     desc = dff.groupby("Survived")[vars_num].describe().T
     desc.index.names = ["Variable", "Estadístico"]
-    st.dataframe(desc.style.format("{:.2f}"), use_container_width=True)
+    st.dataframe(desc.style.format("{:.2f}"), width="stretch")
 
 # ────────────────────────────────────────────────────────────────────────────────
 # TAB 2 — Distribuciones
